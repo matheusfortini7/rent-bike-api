@@ -6,6 +6,7 @@ class BikesRepresenter
   def as_json
     @bikes.map do |bike|
       {
+        id: bike.id,
         brand: bike.brand,
         model: bike.model,
         color: bike.color

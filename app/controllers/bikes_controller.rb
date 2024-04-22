@@ -18,6 +18,15 @@ class BikesController < ApplicationController
     render json: BikeRepresenter.new(bike).as_json
   end
 
+  def update
+    bike = find_bike
+    if bike.update(bike_params)
+      render json: BikeRepresenter.new(bike).as_json, status: :no_content
+    else
+      render status: :unprocessable_entity
+    end
+  end
+
   private
 
   def find_bike
