@@ -1,9 +1,9 @@
 class BikesController < ApplicationController
   def create
-    @bike = Bike.new(bike_params)
+    bike = Bike.new(bike_params)
 
-    if @bike.save
-      render json: { brand: @bike.brand, model: @bike.model, color: @bike.color }, status: :created
+    if bike.save
+      render json: { brand: bike.brand, model: bike.model, color: bike.color }, status: :created
     else
       render status: :unprocessable_entity
     end
@@ -14,7 +14,9 @@ class BikesController < ApplicationController
   end
 
   def show
-
+    bike = Bike.find(params[:id])
+    render json: { brand: bike.brand, model: bike.model, color: bike.color }, status: :created
+    # render json: BikeRepresenter.new(bike)
   end
 
   private
