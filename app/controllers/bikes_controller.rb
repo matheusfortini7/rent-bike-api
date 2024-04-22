@@ -9,6 +9,14 @@ class BikesController < ApplicationController
     end
   end
 
+  def index
+    render json: BikesRepresenter.new(Bike.all)
+  end
+
+  def show
+
+  end
+
   private
 
   def bike_params
