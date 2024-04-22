@@ -10,16 +10,19 @@ class BikesController < ApplicationController
   end
 
   def index
-    render json: BikesRepresenter.new(Bike.all)
+    render json: BikesRepresenter.new(Bike.all).as_json
   end
 
   def show
-    bike = Bike.find(params[:id])
-    render json: { brand: bike.brand, model: bike.model, color: bike.color }, status: :created
-    # render json: BikeRepresenter.new(bike)
+    bike = find_bike
+    render json: BikeRepresenter.new(bike).as_json
   end
 
   private
+
+  def find_bike
+    Bike.find(params[:id])
+  end
 
   def bike_params
     params.require(:bike).permit(:brand, :model, :color)
