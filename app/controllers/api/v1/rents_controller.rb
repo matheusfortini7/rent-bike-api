@@ -39,7 +39,7 @@ module Api
       private
 
       def find_rent
-        rent.find(params[:id])
+        Rent.find(params[:id])
       end
 
       def rent_params
