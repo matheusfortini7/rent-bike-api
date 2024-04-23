@@ -12,7 +12,7 @@ module Api
       end
 
       def index
-        rents = rent.all
+        rents = Rent.all
         render json: RentsRepresenter.new(rents).as_json
       end
 
