@@ -27,6 +27,13 @@ class BikesController < ApplicationController
     end
   end
 
+  def destroy
+    bike = find_bike
+
+    bike.destroy
+    head :no_content
+  end
+
   private
 
   def find_bike
