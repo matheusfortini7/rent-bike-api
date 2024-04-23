@@ -12,7 +12,8 @@ module Api
       end
 
       def index
-        render json: BikesRepresenter.new(Bike.all).as_json
+        bikes = Bike.all
+        render json: BikesRepresenter.new(bikes).as_json
       end
 
       def show
