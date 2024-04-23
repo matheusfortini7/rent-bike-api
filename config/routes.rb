@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :clients
       resources :bikes
       resources :rents
+
+      post 'authenticate', to: 'authentication#create'
     end
   end
 
