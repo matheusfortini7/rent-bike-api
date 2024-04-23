@@ -7,9 +7,9 @@ class ClientsRepresenter
     @clients.map do |client|
       {
         id: client.id,
-        brand: client.brand,
-        model: client.model,
-        color: client.color
+        brand: client.name,
+        model: client.phone,
+        color: client.address
       }
     end
   end
