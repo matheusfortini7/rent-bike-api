@@ -1,6 +1,10 @@
 module Api
   module V1
     class BikesController < ApplicationController
+      include ActionController::HttpAuthentication::Token
+
+      before_action :authenticate_user
+
       def create
         bike = Bike.new(bike_params)
 
@@ -38,6 +42,14 @@ module Api
       end
 
       private
+
+      def authenticate_user
+        token, _options = token_and_options(request)
+        user_id = AuthenticationTokenService.decode(token)
+        User.find_by(user_id)
+        rescue ActiveRecord::RecordNotFound, JWT::DecodeError
+          render status: :unauthorized
+      end
 
       def find_bike
         Bike.find(params[:id])
