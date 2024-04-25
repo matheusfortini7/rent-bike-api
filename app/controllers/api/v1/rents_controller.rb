@@ -1,6 +1,10 @@
 module Api
   module V1
     class RentsController < ApplicationController
+      include ActionController::HttpAuthentication::Token
+
+      before_action :authenticate_user
+
       def create
         rent = Rent.new(rent_params.merge(bike_id: params[:bike_id], client_id: params[:client_id]))
 
@@ -37,6 +41,14 @@ module Api
       end
 
       private
+
+      def authenticate_user
+        token, _options = token_and_options(request)
+        user_id = AuthenticationTokenService.decode(token)
+        User.find_by(user_id)
+        rescue ActiveRecord::RecordNotFound, JWT::DecodeError
+          render status: :unauthorized
+      end
 
       def find_rent
         Rent.find(params[:id])
