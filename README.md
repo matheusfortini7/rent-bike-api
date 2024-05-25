@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Essa API foi construída a fim de viabilizar a criação de um fluxo de gestão para aluguel de bicicletas.
 
-Things you may want to cover:
+## Enpoints
 
-* Ruby version
+1. Cadastro de bikes
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- URL: /api/v1/bikes
+- Método: POST
+- Descrição: Realiza a criação de bicicletas no estoque
+- Parâmetros: "brand", "model" e "color"
+- Exemplo de requisição: curl -X POST http://localhost:3000/api/v1/bikes -H "Content-Type: application/json" -d '{"brand": "Caloi", "model": "C1000", "color": "blue"}'
